@@ -28,7 +28,7 @@ orchestrated by Airflow and runs every 5 minutes.
 ## 1. Setup
 
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:sdwqwt2/Used-Car-Price-Prediction.git
 cd used-car-price-prediction
 python -m venv venv && source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
@@ -36,22 +36,20 @@ pip install -r requirements.txt
 
 ## 2. Get the dataset
 
-Download a "Used Car Price Prediction" / CarDekho-style dataset (e.g. from
-Kaggle) and place it at:
+Download a used-car dataset with the following columns and place it at:
 
 ```
 data/raw/used_cars.csv
 ```
 
-Required columns (rename in `code/datasets/data_pipeline.py::COLUMN_MAP` if
-yours differ): `name, year, selling_price, km_driven, fuel, seller_type,
-transmission, owner`.
+Columns used: `car_name, brand, model, vehicle_age, km_driven, seller_type,
+fuel_type, transmission_type, mileage, engine, max_power, seats, selling_price`
 
 ## 3. Run the pipeline manually (without Airflow)
 
 ```bash
-python code/datasets/data_pipeline.py      # -> data/processed/train.csv, test.csv
-python code/models/train.py                # -> models/model.joblib, MLflow run in ./mlruns
+python3 code/datasets/data_pipeline.py      # -> data/processed/train.csv, test.csv
+python3 code/models/train.py                # -> models/model.joblib, MLflow run in ./mlruns
 cd code/deployment
 docker compose build
 docker compose up -d
@@ -99,5 +97,3 @@ cd code/deployment && docker compose down
 - The API and app run in **separate Docker containers** (see
   `code/deployment/docker-compose.yml`); the app calls the API over the
   Docker network at `http://api:8000`.
-- The trained model (`models/model.joblib`) is git-ignored — regenerate it
-  by running Stage 1 + Stage 2, or via the Airflow DAG.
