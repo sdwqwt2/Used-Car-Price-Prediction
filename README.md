@@ -25,6 +25,12 @@ orchestrated by Airflow and runs every 5 minutes.
 └── requirements.txt
 ```
 
+## 0. Prerequisites
+
+- Python 3.11
+- Docker
+
+
 ## 1. Setup
 
 ```bash
