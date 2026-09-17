@@ -34,18 +34,7 @@ python -m venv venv && source venv/bin/activate      # Windows: venv\Scripts\act
 pip install -r requirements.txt
 ```
 
-## 2. Get the dataset
-
-Download a used-car dataset with the following columns and place it at:
-
-```
-data/raw/used_cars.csv
-```
-
-Columns used: `car_name, brand, model, vehicle_age, km_driven, seller_type,
-fuel_type, transmission_type, mileage, engine, max_power, seats, selling_price`
-
-## 3. Run the pipeline manually (without Airflow)
+## 2. Run the pipeline manually (without Airflow)
 
 ```bash
 python3 code/datasets/data_pipeline.py      # -> data/processed/train.csv, test.csv
@@ -64,7 +53,7 @@ To inspect training runs/metrics:
 mlflow ui --backend-store-uri ./mlruns
 ```
 
-## 4. Run the automated pipeline with Airflow (every 5 minutes)
+## 3. Run the automated pipeline with Airflow (every 5 minutes)
 
 ```bash
 export AIRFLOW_HOME=$(pwd)/services/airflow
@@ -86,7 +75,7 @@ rebuilding and restarting the API/app containers with the freshly trained
 model each cycle. If a run takes longer than 5 minutes, increase
 `schedule_interval` in `services/airflow/dags/used_car_pipeline_dag.py`.
 
-## 5. Stopping
+## 4. Stopping
 
 ```bash
 cd code/deployment && docker compose down
