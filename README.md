@@ -25,7 +25,7 @@ orchestrated by Airflow and runs every 5 minutes.
 └── requirements.txt
 ```
 
-## 0. Prerequisites
+## Prerequisites
 
 - Python 3.11
 - Docker
@@ -34,10 +34,10 @@ orchestrated by Airflow and runs every 5 minutes.
 ## 1. Setup
 
 ```bash
-git clone git@github.com:sdwqwt2/Used-Car-Price-Prediction.git
+git clone https://github.com/sdwqwt2/Used-Car-Price-Prediction.git     # SSH: git@github.com:sdwqwt2/Used-Car-Price-Prediction.git
 cd used-car-price-prediction
-python -m venv venv && source venv/bin/activate      # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+python3 -m venv venv && source venv/bin/activate      # Windows: venv\Scripts\activate
+pip3 install -r requirements.txt
 ```
 
 ## 2. Run the pipeline manually (without Airflow)
